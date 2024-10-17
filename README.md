@@ -44,7 +44,7 @@ Update: Any changes to a project (such as recalculated measurements) are reflect
 Delete: When a project is deleted, the data is removed from both the local database and the server, ensuring synchronization.
 
 
-5. 
+5. Details on what is happening when the device is offline.
 1. Create
 Scenario: The user attempts to create a new project while offline.
 What Happens:
