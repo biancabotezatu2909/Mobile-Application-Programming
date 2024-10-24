@@ -1,4 +1,5 @@
-# Project Idea
+## ProjectAR - Measuring App
+### Project Idea
 
 1. Short Description
 This app is designed to assist users in calculating the surface area of objects, such as roofs or floors, 
