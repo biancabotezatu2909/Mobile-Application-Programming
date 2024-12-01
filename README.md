@@ -1,101 +1,103 @@
-## ProjectAR - Measuring App
-### Project Idea
-
-1. Short Description
-This app is designed to assist users in calculating the surface area of objects, such as roofs or floors, 
-and estimate the amount of material needed for the job. The app allows users to create multiple projects, 
-each containing measurements of surfaces and the materials required. Users can either input the data manually 
-or use their phone’s AR camera for automatic measurements. It aims to simplify tasks for construction professionals, 
-particularly when measuring irregularly shaped surfaces.
-
-2. Domain Details (Entities and Fields)
-In this application, the main entity is the Project.
-Each project contains fields that are saved and can be accessed later for calculation and analysis.
-The key fields include:
-
--> Project Name: A user-defined name for the project.
--> Surface Area: The calculated area of the surface (e.g., in square meters).
--> Material Type: The type of material needed for the surface (e.g., tiles, metal sheets).
--> Material Quantity: The estimated amount of material required based on the surface area.
--> Measurement Method: Indicates whether the data was entered manually or via the AR camera.
-
-3. CRUD Operations (Create, Read, Update, Delete)
-The CRUD operations in the context of a Project involve the following:
-
-Create: Users can add a new project by pressing the "+" button.
-They must provide details like the project name, the material type,
-and input surface area either manually or by using the AR camera.
-
-Read: Users can view the details of an existing project by selecting it from the list on the main screen.
-The surface area, material type, and quantity are displayed.
-
-Update: Users can modify an existing project by changing the measurements or material type,
-and the calculations will be updated accordingly.
-
-Delete: Projects can be deleted from the list if they are no longer needed by clicking the trash bin button.
-
-4. Persistence Details (Local DB and Server)
-The app ensures that project data is stored both on the device (local database)
-and on the server for easy access and backup. Here’s how the persistence works:
-
-Create: When a new project is created, it is saved both locally and on the server.
-
-Update: Any changes to a project (such as recalculated measurements) are reflected in both the local storage and on the server.
-
-Delete: When a project is deleted, the data is removed from both the local database and the server, ensuring synchronization.
-
-
-5. Details on what is happening when the device is offline.
-1. Create
-Scenario: The user attempts to create a new project while offline.
-What Happens:
-The new project data (project name, surface area, material type, etc.) is saved locally on the device in the app’s local database.
-A sync operation is queued in the background. Once the device reconnects to the internet, the app will automatically push the
-project data to the server, ensuring the new project is saved both locally and remotely.
-The user can continue adding projects offline, but the app will display a notification or icon indicating the app is
-offline and that syncing will occur later.
-Example:
-
-A user in a remote area adds a new project for measuring a roof, inputs the surface area and material details.
-The project is saved locally, and as soon as internet access is available again, the project syncs with the server.
-
-2. Read
-Scenario: The user attempts to view existing projects while offline.
-What Happens:
-The app allows the user to access previously saved projects from the local database. Any project stored on the device before
-going offline will be available.
-If a project was created on another device or hasn’t yet synced to the local database, it won’t be accessible until the user
-is back online.
-Users can view all project details, such as surface measurements, material types, and quantities, as long as the data was
-saved locally before going offline.
-Example:
-
-A user on a construction site without internet access can review all projects that were previously saved on
-the device, including the details for surface area and materials. However, newly created or updated projects from other
-devices cannot be accessed until online again.
-
-3. Update
-Scenario: The user attempts to modify a project while offline.
-What Happens:
-The user can edit existing project details, such as updating the surface area or changing the material type.
-These changes are saved locally in the app’s database.
-Similar to the Create operation, the changes are queued to sync once the device reconnects to the internet.
-When back online, the updated information is automatically pushed to the server, ensuring all data remains consistent across devices.
-The app may notify the user that the updates are pending sync with the server to avoid confusion.
-Example:
-
-While offline, a user modifies the surface measurement for a project stored locally. The updated measurement
-is saved, and once back online, the server will receive the updated data.
-
-4. Delete
-Scenario: The user attempts to delete a project while offline.
-What Happens:
-The app allows the user to delete a project locally from the device’s database. The project will disappear from the list immediately.
-A delete request is queued to sync with the server once the device reconnects to the internet. The project is permanently removed from
-the server at that point, ensuring consistency between the local database and the server.
-The user may receive a notification that the delete action is pending sync to ensure they understand that the project is still on the server temporarily.
-Example:
-
-The user deletes an unnecessary project while offline. The project is removed locally from their list, and once the app detects an
-internet connection, the deletion is completed on the server.
+## App Concept: Film Roll Photo Journal
+### 1. Overview
+This app is a Film Roll Organizer and Photo Journal designed for analog photography enthusiasts. It allows users to catalog their film rolls, organize photos within each roll, and capture details specific to film photography. Users can also create subalbums for each roll, providing a flexible way to manage multiple themes or sessions within the same roll.
+________________________________________
+### 2. Core Features
+1.	Roll Management
+o	Users can create and manage multiple film rolls.
+o	For each roll, they can specify the roll's type (e.g., color, black and white), film brand, ISO rating, and capacity (e.g., 24 or 36 exposures).
+o	Rolls have a status indicator (e.g., "In Progress," "Developed," "Scanned").
+2.	Photo Management within Rolls
+o	Each roll contains a list of photos, where users can add details such as location, date, time, and notes.
+o	Each photo can store camera settings (e.g., aperture, shutter speed) and additional metadata relevant to film photography.
+3.	Subalbums within Rolls
+o	Users can create multiple subalbums within each roll, grouping photos by themes, sessions, or locations.
+o	Each subalbum can have its own title and description, allowing users to structure their photos by context.
+o	Subalbums provide an easy way to organize different parts of a roll dedicated to separate photography projects or experiments.
+4.	Detailed Metadata
+o	Roll Metadata: Users can specify film type, capacity, ISO, brand, and other roll details.
+o	Photo Metadata: Location, date/time, exposure settings, and any specific notes about the photo (e.g., lighting conditions, composition notes).
+o	Subalbum Metadata: Title and description for each subalbum to give context to the photo group.
+5.	User-friendly Navigation
+o	A dashboard or home screen displays all rolls, showing quick details like roll type, number of photos, and status.
+o	Tapping on a roll opens a detailed view where users can see photos, subalbums, and roll metadata.
+o	Within each roll, users can tap into specific subalbums to see the photos grouped by that theme or session.
+6.	Offline and Sync Capabilities
+o	The app provides offline functionality to allow users to add rolls and photos without internet.
+o	When online, users can sync data with a cloud service, ensuring they have a backup of their records.
+________________________________________
+### 3. Detailed Functional Specifications
+Entities
+1.	Film Roll:
+o	Fields:
+	Roll ID: Unique identifier for the roll.
+	Roll Name: Name of the roll.
+	Type: Type of film (e.g., color, black and white).
+	ISO: ISO rating of the roll.
+	Brand: Brand of the film (e.g., Kodak, Fujifilm).
+	Capacity: Total exposures on the roll (e.g., 24, 36).
+	Status: Status indicator (e.g., "In Progress," "Developed," "Scanned").
+	Date Created: The date the roll was first used.
+2.	Subalbum:
+o	Fields:
+	Subalbum ID: Unique identifier for the subalbum.
+	Title: Title of the subalbum (e.g., "Beach Trip," "Cityscapes").
+	Description: A brief description of the theme or purpose of the subalbum.
+3.	Photo:
+o	Fields:
+	Photo ID: Unique identifier for each photo.
+	Location: Geotag or location name where the photo was taken.
+	Date and Time: The date and time the photo was taken.
+	Exposure Settings: Camera settings for the photo (aperture, shutter speed, etc.).
+	Notes: Additional notes about the photo, like lighting or mood.
+	Subalbum ID: Reference to the subalbum this photo belongs to (if applicable).
+CRUD Operations
+1.	Film Roll CRUD Operations:
+o	Create: Add a new film roll with metadata (type, ISO, brand, capacity, status).
+o	Read: View all rolls in a list or grid view, with basic details displayed.
+o	Update: Edit details of a roll, like status or capacity.
+o	Delete: Delete a roll, which removes all associated subalbums and photos.
+2.	Subalbum CRUD Operations:
+o	Create: Add a subalbum within a roll, with a title and description.
+o	Read: View all subalbums within a roll to see themes or sessions.
+o	Update: Edit the title or description of a subalbum.
+o	Delete: Delete a subalbum, which removes all photos associated with it.
+3.	Photo CRUD Operations:
+o	Create: Add a photo to a roll or subalbum, with location, date, exposure settings, and notes.
+o	Read: View all photos in a roll or specific subalbum.
+o	Update: Edit details of a photo, such as location or exposure settings.
+o	Delete: Delete a specific photo from a roll or subalbum.
+________________________________________
+### 4. Data Persistence and Sync
+•	Local Database: Use a local Room database in Kotlin to store all rolls, subalbums, and photos offline.
+•	Cloud Sync: Sync functionality to back up rolls and photos to a cloud service (e.g., Firebase, AWS) when the device is connected.
+•	Offline Functionality: CRUD operations are available offline and sync automatically when connectivity is restored.
+________________________________________
+### 5. Offline Access and Synchronization
+•	Offline Scenarios:
+o	Create: Users can create rolls, subalbums, and photos offline; data is saved locally and syncs to the cloud once online.
+o	Read: Full access to locally stored rolls and photos without an internet connection.
+o	Update: Changes made offline are saved locally and updated in the cloud once online.
+o	Delete: Deletions are recorded offline and synchronized with the cloud when connectivity is available.
+________________________________________
+### 6. User Interface (UI) Mockups
+To visualize the app’s layout, here are some suggested screens to design in Figma or Sketch:
+1.	Home Screen (Film Roll List):
+o	Displays a list of film rolls with quick details like type, ISO, status, and the number of photos.
+o	Options to add a new roll or filter rolls by status.
+2.	Roll Details Screen:
+o	Shows details of the selected roll, including type, ISO, brand, and status.
+o	Displays a list of subalbums and standalone photos within the roll.
+o	Options to add a new subalbum or photo.
+3.	Subalbum Screen:
+o	Displays photos grouped under the selected subalbum, with metadata shown under each photo.
+o	Option to add a new photo to the subalbum.
+4.	Photo Details Screen:
+o	Shows detailed information for a selected photo, including location, date, exposure settings, and notes.
+o	Options to edit photo details or delete the photo.
+________________________________________
+###Summary
+The Film Roll Photo Journal App is designed for photographers to organize and document their analog photography process. By supporting film roll organization, subalbums, and rich metadata for each photo, it offers a structured yet flexible approach to film photography. With offline functionality and cloud sync, the app ensures data is secure and accessible anytime, making it a valuable tool for film photography enthusiasts.
+Read operation is implemented in a list
+A recycler view is used linked to a view model using a live view object. Or the activity/fragment is marshaling only the affected object/operation. No rebuild of the list/adapter or activity/fragment.
 
