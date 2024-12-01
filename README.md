@@ -96,7 +96,7 @@ o	Option to add a new photo to the subalbum.
 o	Shows detailed information for a selected photo, including location, date, exposure settings, and notes.
 o	Options to edit photo details or delete the photo.
 ________________________________________
-###Summary
+### Summary
 The Film Roll Photo Journal App is designed for photographers to organize and document their analog photography process. By supporting film roll organization, subalbums, and rich metadata for each photo, it offers a structured yet flexible approach to film photography. With offline functionality and cloud sync, the app ensures data is secure and accessible anytime, making it a valuable tool for film photography enthusiasts.
 Read operation is implemented in a list
 A recycler view is used linked to a view model using a live view object. Or the activity/fragment is marshaling only the affected object/operation. No rebuild of the list/adapter or activity/fragment.
